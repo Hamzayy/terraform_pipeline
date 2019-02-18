@@ -4,7 +4,7 @@ resource "aws_vpc" "default" {
   enable_dns_hostnames = true
 
   tags {
-    Name = "test-vpc"
+    Name = "test-vpc-${var.env}"
   }
 }
 
@@ -15,7 +15,7 @@ resource "aws_subnet" "public-subnet" {
   availability_zone = "us-west-1a"
 
   tags {
-    Name = "Web Public Subnet"
+    Name = "Web Public Subnet-${var.env}"
   }
 }
 
@@ -26,7 +26,7 @@ resource "aws_subnet" "private-subnet" {
   availability_zone = "us-west-1b"
 
   tags {
-    Name = "Database Private Subnet"
+    Name = "Database Private Subnet-${var.env}"
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_internet_gateway" "IGW" {
   vpc_id = "${aws_vpc.default.id}"
 
   tags {
-    Name = "VPC IGW"
+    Name = "VPC IGW-${var.env}"
   }
 }
 
@@ -45,11 +45,11 @@ resource "aws_route_table" "web-public-rt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.gw.id}"
+    gateway_id = "${aws_internet_gateway.IGW.id}"
   }
 
   tags {
-    Name = "Public Subnet RT"
+    Name = "Public Subnet RT-${var.env}"
   }
 }
 
@@ -101,7 +101,7 @@ resource "aws_security_group" "sgweb" {
   vpc_id="${aws_vpc.default.id}"
 
   tags {
-    Name = "Web Server SG"
+    Name = "Web Server SG-${var.env}"
   }
 }
 
@@ -134,6 +134,6 @@ resource "aws_security_group" "sgdb"{
   vpc_id = "${aws_vpc.default.id}"
 
   tags {
-    Name = "DB SG"
+    Name = "DB SG-${var.env}"
   }
 }

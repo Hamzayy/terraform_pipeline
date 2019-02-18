@@ -15,7 +15,7 @@ resource "aws_instance" "wb" {
    source_dest_check = false
 
   tags {
-    Name = "webserver"
+    Name = "webserver-${var.env}"
   }
 }
 
@@ -29,6 +29,6 @@ resource "aws_instance" "db" {
    source_dest_check = false
 
   tags {
-    Name = "database"
+    Name = "database-${var.env}"
   }
 }

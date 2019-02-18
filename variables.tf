@@ -27,3 +27,8 @@ variable "key_path" {
   description = "SSH Public Key path"
   default = "public_key"
 }
+
+variable "env" {
+  description = "Environment Variable"
+  type = "string"
+}

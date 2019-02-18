@@ -9,6 +9,6 @@ resource "aws_instance" "terraform-test" {
  key_name = "myKeyPair"
  security_groups= ["NBS_SecurityGroup"]
  tags {
-  Name = "terraform-instance"
+  Name = "terraform-instance-${var.env}"
  }
 }
