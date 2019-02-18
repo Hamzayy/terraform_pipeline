@@ -1,6 +1,6 @@
 variable "aws_region" {
   description = "Region for the VPC"
-  default = "ap-southeast-1"
+  default = "us-west-2"
 }
 
 variable "vpc_cidr" {
