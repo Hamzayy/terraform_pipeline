@@ -20,15 +20,15 @@ variable "private_subnet_cidr" {
 
 variable "ami" {
   description = "Amazon Linux AMI"
-  default = "ami-14c5486b"
+  default = "ami-032509850cf9ee54e"
 }
 
 variable "key_path" {
   description = "SSH Public Key path"
-  default = "public_key"
+  default = "myKeyPair"
 }
 
 variable "env" {
-  description = "Environment Variable"
+  description = "Environment to run"
   type = "string"
 }

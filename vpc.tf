@@ -12,7 +12,7 @@ resource "aws_vpc" "default" {
 resource "aws_subnet" "public-subnet" {
   vpc_id = "${aws_vpc.default.id}"
   cidr_block = "${var.public_subnet_cidr}"
-  availability_zone = "us-west-1a"
+  availability_zone = "us-west-2a"
 
   tags {
     Name = "Web Public Subnet-${var.env}"
@@ -23,7 +23,7 @@ resource "aws_subnet" "public-subnet" {
 resource "aws_subnet" "private-subnet" {
   vpc_id = "${aws_vpc.default.id}"
   cidr_block = "${var.private_subnet_cidr}"
-  availability_zone = "us-west-1b"
+  availability_zone = "us-west-2b"
 
   tags {
     Name = "Database Private Subnet-${var.env}"
@@ -31,7 +31,7 @@ resource "aws_subnet" "private-subnet" {
 }
 
 # Define the internet gateway
-resource "aws_internet_gateway" "IGW" {
+resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.default.id}"
 
   tags {
@@ -45,7 +45,7 @@ resource "aws_route_table" "web-public-rt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.IGW.id}"
+    gateway_id = "${aws_internet_gateway.gw.id}"
   }
 
   tags {
