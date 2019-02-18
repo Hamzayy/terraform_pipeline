@@ -1,2 +1,2 @@
 key_path = "myKeyPair"
-env = "prod"
+env = "dev"
